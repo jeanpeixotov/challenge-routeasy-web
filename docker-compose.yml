@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    routeasy-web:
+        build: .
+        container_name: challenge-web
+        environment:
+            - PORT=3000
+            - GOOGLE_KEY=AIzaSyAM4j_CWKzOBsxJZSK138XbBHk0U0t8R44
+        ports:
+            - "3000:3000"
+        volumes:
+            - './src:/home/app/src'
+            - './package.json:/home/app/package.json'
