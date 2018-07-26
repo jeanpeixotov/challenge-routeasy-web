@@ -1,62 +1,27 @@
-<!doctype html>
-<html ng-app>
-<head>
-  <title>Lista de compra com AngularJS</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="dist/css/style.min.css">
-</head>
-<body>
-  <div class="container" ng-controller="ListaComprasController">
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <title>Routeasy</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    </head>
 
-    <div class="row">
-      <div class="page-header">
-        <div class="span9">
-          <h1>Lista de compras</h1>
+    <body>
+        <div class="main container">
+            <ng-view></ng-view>
         </div>
-        <div class="span3">
-          <input type="search" ng-model="search" placeholder="Buscar por...">
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <table id="lista-compras" class="page-header">
-        <thead>
-          <tr>
-            <th>Comprado?</th>
-            <th>Produto</th>
-            <th>Quantidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in itens | filter:search" class="comprado-{{ item.comprado }}">
-            <td><input type="checkbox" ng-model="item.comprado"></td>
-            <td><strong>{{ item.produto }}</strong></td>
-            <td>{{ item.quantidade }}</td>
-            <td>
-              <button class="btn btn-warning btn-small" ng-click="editarItem($index)">
-                <i class="icon-pencil icon-white"></i> editar
-              </button>
-              <button class="btn btn-danger btn-small" ng-click="deleteItem($index)">
-                <i class="icon-trash icon-white"></i> deletar
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <footer>
+            <div class="container">
+                <p><a class="github" href="https://github.com/jeanvitor06">Jean Peixoto</a></p>
+            </div>
+        </footer>
 
-    <form class="row form-inline" name="validarValoresPreenchidos">
-      <input type="text" ng-model="item.produto" placeholder="Produto" required>
-      <input type="number" ng-model="item.quantidade" placeholder="Quantidade" class="input-small" required>
-      <button ng-hide="edit" class="btn btn-success" ng-disabled="validarValoresPreenchidos.$invalid" ng-click="adicionaItem()">
-        <i class="icon-plus icon-white"></i> adicionar
-      </button>
-      <button ng-show="edit" class="btn btn-success" ng-disabled="validarValoresPreenchidos.$invalid" ng-click="applyChanges()">
-        <i class="icon-ok icon-white"></i> salvar
-      </button>
-    </form>
-  </div>
-  <script src="dist/js/controllers.js"></script>
-</body>
+        <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+        <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+
+        <script type="text/javascript" src="app/app.js"></script>
+        <script type="text/javascript" src="app/routes/deliveryRoutes.js"></script>
+        <script type="text/javascript" src="app/controllers/deliveryController.js"></script>
+        <script type="text/javascript" src="app/services/deliveryFactory.js"></script>
+    </body>
 </html>

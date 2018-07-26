@@ -1,0 +1,63 @@
+<div class=containeirs id="deliveries-list">
+    <div class="container-add" id="delivery-add">
+        <form method="post">
+        <input type="text" placeholder="Nome cliente" ng-model="$ctrl.delivery.name"/>
+        <input type="number" placeholder="Peso entrega" ng-model="$ctrl.delivery.weight"/>
+            
+        <div class="flexContainer">
+            <input type="text" placeholder="endereço cliente" ng-model="$ctrl.delivery.addressClientFormat"/>
+            <button type="submit" name="button" ng-click="searchAddress($ctrl.delivery)">Buscar...</i></button>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Latitude" ng-model="$ctrl.delivery.geolocationLatitude" readonly/>
+            <input type="text" placeholder="Longitude" ng-model="$ctrl.delivery.geolocationLongitude" readonly/>
+        </div>
+            <div class="buttons">
+            <button class="submit" type="submit" name="button" ng-click="adddelivery($ctrl.delivery)">
+                <i class="fa fa-check-circle" aria-hidden="true"></i> Cadastrar
+            </button>
+
+            <button class="button" type="reset" name="button" ng-click="resetForm($ctrl.delivery)">
+                <i class="fa fa-check-circle" aria-hidden="true"></i> Resetar
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="container-map" id="delivery-map">
+        <div class="map"></div>
+        <div class=table-containeir ng-if="deliveries.length > 0">
+        <p>Total de clientes: X; Peso Total: Y kg; Ticket médio*: Z</p>
+            <div class="details">
+            <table>
+                <tr>
+                <th>Nome</th>
+                <th>Rua</th>
+                <th>Cidade</th>
+                <th>País</th>
+                <th>Peso</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                </tr>
+                <tr ng-repeat="delivery in deliveries track by $index">
+                <td>{{delivery.name}}</td>
+                <td>{{delivery.addressName}}</td>
+                <td>{{delivery.city}}</td>
+                <td>{{delivery.country}}</td>
+                <td>{{delivery.weight}}</td>
+                <td>{{delivery.geolocationLatitude}}</td>
+                <td>{{delivery.geolocationLongitude}}</td>
+                <td>
+                    <button class="default" type="button" ng-click="editdelivery($index)">
+                        Editar
+                    </button>
+                    <button class="delete" type="button" ng-click="deletedelivery($index)">
+                        Deletar
+                    </button>
+                </td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
